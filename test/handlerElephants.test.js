@@ -19,4 +19,13 @@ describe('Testes da função HandlerElephants', () => {
   test('Verifica se ao receber `availability` retorna um array com a relação de dias em que é possível visitar os elefantes!', () => {
     expect(handlerElephants('availability')).toEqual(['Friday', 'Saturday', 'Sunday', 'Tuesday']);
   });
+  test('Verifica se ao receber nenhum parametro retorna null!', () => {
+    expect(handlerElephants('Renegade')).toBeNull();
+  });
+  test('Verifica se ao receber um parametro vázio retorna undefined!', () => {
+    expect(handlerElephants()).toBeUndefined();
+  });
+  test('Verifica se ao receber um parametro que não seja uma string retorna uma menssagem!', () => {
+    expect(handlerElephants(4)).toEqual('Parâmetro inválido, é necessário uma string');
+  });
 });
