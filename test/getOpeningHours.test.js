@@ -21,4 +21,19 @@ describe('Testes da função getOpeningHours', () => {
   test('Verifica se ao receber o parametro `Wednesday` `09:00-AM` retorna `The zoo is closed`!', () => {
     expect(getOpeningHours('Wednesday', '09:00-PM')).toEqual('The zoo is closed');
   });
+  test('Verifica se ao receber o parametro `Terça` e não `Tuesday` retorna um Error!', () => {
+    expect(() => getOpeningHours('Terça')).toThrowError(new Error('The day must be valid. Example: Monday'));
+  });
+  test('Verifica se ao receber o parametro `Tuesday` `09:00-a` retorna Error!', () => {
+    expect(() => getOpeningHours('Tuesday', '9:00-a')).toThrowError(new Error('The abbreviation must be \'AM\' or \'PM\''));
+  });
+  test('Verifica se ao receber o parametro `Tuesday` `nove` retorna Error!', () => {
+    expect(() => getOpeningHours('Tuesday', 'nove')).toThrowError(new Error('The hour should represent a number'));
+  });
+  test('Verifica se ao receber o parametro `Tuesday` `13:00-PM` retorna Error!', () => {
+    expect(() => getOpeningHours('Tuesday', '13:00-PM')).toThrowError(new Error('The hour must be between 0 and 12'));
+  });
+  test('Verifica se ao receber o parametro `Tuesday` `9:60-AM` retorna Error!', () => {
+    expect(() => getOpeningHours('Tuesday', '09:60-AM')).toThrowError(new Error('The minutes must be between 0 and 59'));
+  });
 });
