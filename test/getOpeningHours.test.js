@@ -27,8 +27,11 @@ describe('Testes da função getOpeningHours', () => {
   test('Verifica se ao receber o parametro `Tuesday` `09:00-a` retorna Error!', () => {
     expect(() => getOpeningHours('Tuesday', '9:00-a')).toThrowError(new Error('The abbreviation must be \'AM\' or \'PM\''));
   });
-  test('Verifica se ao receber o parametro `Tuesday` `nove` retorna Error!', () => {
-    expect(() => getOpeningHours('Tuesday', 'nove')).toThrowError(new Error('The hour should represent a number'));
+  test('Verifica se ao receber o parametro `Tuesday` `c9:00-AM` retorna Error!', () => {
+    expect(() => getOpeningHours('Tuesday', 'c9:00-AM')).toThrowError(new Error('The hour should represent a number'));
+  });
+  test('Verifica se ao receber o parametro `Tuesday` `09:c0-AM` retorna Error!', () => {
+    expect(() => getOpeningHours('Tuesday', '09:c0-AM')).toThrowError(new Error('The minutes should represent a number'));
   });
   test('Verifica se ao receber o parametro `Tuesday` `13:00-PM` retorna Error!', () => {
     expect(() => getOpeningHours('Tuesday', '13:00-PM')).toThrowError(new Error('The hour must be between 0 and 12'));
