@@ -1,7 +1,8 @@
 const data = require('../data/zoo_data');
 
 function countEntrants(entrants) {
-  // seu código aqui
+  const verificaFaixa = entrants.reduce((acc, curr) => acc, {});
+  return verificaFaixa;
 }
 
 function calculateEntry(entrants) {
